@@ -5,7 +5,7 @@ class MyDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final imageUrl =
-        "https://avatars.githubusercontent.com/u/12619420?s=460&u=26db98cbde1dd34c7c67b85c240505a436b2c36d&v=4";
+        "https://lens.usercontent.google.com/image?vsrid=CKiakYaw1KihBhACGAEiJDc3ZDVlYTlmLTI0YzMtNDc0MS1iNDEyLWRhYzc4ODc4YmJjMA&gsessionid=KPGnWrXS8GSNKLoUzCPk_6S04nhMjpvIZLZxN-5gYTC88eEaB1Y8yg";
     return Drawer(
       child: Container(
         color: Colors.deepPurple,
@@ -16,8 +16,8 @@ class MyDrawer extends StatelessWidget {
               padding: EdgeInsets.zero,
               child: UserAccountsDrawerHeader(
                 margin: EdgeInsets.zero,
-                accountName: Text("Pawan Kumar"),
-                accountEmail: Text("mtechviral@gmail.com"),
+                accountName: Text("Shubham Kumawat"),
+                accountEmail: Text("er.shubhamkumawat@gmail.com"),
                 currentAccountPicture: CircleAvatar(
                   backgroundImage: NetworkImage(imageUrl),
                 ),
