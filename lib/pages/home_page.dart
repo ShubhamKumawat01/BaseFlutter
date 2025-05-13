@@ -1,10 +1,11 @@
 import 'package:day/models/catalog.dart';
-import 'package:day/widgets/drawer.dart';
+import 'package:day/widgets/themes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'dart:convert';
-
-import '../widgets/item_widget.dart';
+import 'package:velocity_x/velocity_x.dart';
+import '../widgets/home_widgets/catalog_header.dart';
+import '../widgets/home_widgets/catalog_list.dart';
 
 class HomePage extends StatefulWidget{
   @override
@@ -17,7 +18,6 @@ class _HomePageState extends State<HomePage> {
   final String name="ITRES";
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     loadData();
   }
@@ -36,54 +36,27 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Catalog App"),
-      ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: (CatalogModel.items != null && CatalogModel.items.isNotEmpty)
-            ? GridView.builder(
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2,
-                    mainAxisSpacing: 16,
-                    crossAxisSpacing: 16
-                ),// in one row how much item
-                itemBuilder: (context,index){
-                  final item=CatalogModel.items[index];
-                  return Card(
-                      clipBehavior: Clip.antiAlias,
-                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-                      child: GridTile(
-                        header: Container(
-                          child: Text(
-                            item.name,
-                            style: TextStyle(color: Colors.white)
-                          ),
-                          padding: const EdgeInsets.all(12),
-                          decoration: BoxDecoration(
-                            color: Colors.deepPurple
-                          ),
-                         ),
-                        child: Image.network(item.image),
-                        footer: Container(
-                          child: Text(
-                              item.price.toString(),
-                              style: TextStyle(color: Colors.white)
-                          ),
-                          padding: const EdgeInsets.all(12),
-                          decoration: BoxDecoration(
-                              color: Colors.black
-                          ),
-                        ),
-                  ));
-
-                },
-                itemCount: CatalogModel.items.length,)
-            : Center(
-          child: CircularProgressIndicator(),
+      backgroundColor: MyTheme.creamColor,
+      body:SafeArea(
+        child: Container(
+          padding: Vx.m32,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              CatalogHeader(),
+              if(CatalogModel.items!=null && CatalogModel.items.isNotEmpty)
+                CatalogList().py16().expand()
+              else
+                Center(
+                  child: CircularProgressIndicator().centered().expand(),
+                )
+            ],
+          ),
         ),
-      ),
-      drawer: MyDrawer(),
+      )
     );
   }
 }
+
+
+
