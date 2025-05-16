@@ -17,7 +17,7 @@ class CartPage extends StatelessWidget {
       ),
       body: Column(
         children: [
-          _CartList().p32().expand(),
+          _CartList().p8().expand(),
           Divider(),
           _CartTotal(),
         ],
@@ -31,7 +31,7 @@ class _CartTotal extends StatelessWidget {
   Widget build(BuildContext context) {
     final CartModel _cart =(VxState.store as MyStore).cart ;
     return SizedBox(
-      height: 200,
+      height: 100,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
@@ -46,7 +46,7 @@ class _CartTotal extends StatelessWidget {
                   .make();
             },
           ),
-          30.widthBox,
+          20.widthBox,
           ElevatedButton(
             onPressed: () {
               ScaffoldMessenger.of(context).showSnackBar(SnackBar(
